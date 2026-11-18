@@ -93,7 +93,7 @@ function Highlights() {
         </h2>
         <a
           href="#contact"
-          className="group inline-flex cursor-pointer items-center gap-2 rounded-[3px] border border-gray-300 bg-white px-4 py-2 text-[10px] font-bold tracking-wider text-gray-800 uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-900 hover:bg-gray-900 hover:text-white hover:shadow-md active:scale-95"
+          className="group inline-flex cursor-pointer items-center gap-2 rounded-[3px] border border-gray-300 bg-white px-4 py-2 text-[10px] font-bold tracking-wider text-gray-800 uppercase transition-all duration-300 hover:-translate-y-0.5 hover:border-[#eb5e38] hover:bg-[#eb5e38] hover:text-white hover:shadow-md active:scale-95"
         >
           <span>GET STARTED</span>
           <span className="transition-transform duration-300 group-hover:translate-x-1">

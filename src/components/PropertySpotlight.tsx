@@ -191,7 +191,7 @@ function PropertySpotlight() {
               type="button"
               onClick={nextSlide}
               aria-label="Next spotlight"
-              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-[#eb5e38] text-xs text-white transition-all duration-300 hover:scale-110 hover:bg-[#d9502b] hover:shadow-lg hover:shadow-[#eb5e38]/40 active:scale-90"
+              className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/45 bg-black/30 text-xs text-white transition-all duration-300 hover:scale-110 hover:bg-[#d9502b] hover:shadow-lg hover:shadow-[#eb5e38]/40 active:scale-90"
             >
               →
             </button>
