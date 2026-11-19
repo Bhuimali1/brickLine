@@ -98,7 +98,7 @@ function Footer() {
       {/* Top Newsletter Strip (Compact Padding) */}
       <div className="border-b border-white/10">
         <div
-          className={`mx-auto flex max-w-7xl flex-col justify-between gap-5 px-4 py-7 transition-all duration-700 ease-out md:flex-row md:items-center md:px-10 md:py-8 ${
+          className={`mx-auto flex max-w-[1440px] flex-col justify-between gap-5 px-4 py-7 transition-all duration-700 ease-out sm:px-6 md:flex-row md:items-center md:py-8 lg:px-8 ${
             inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
           }`}
         >
@@ -144,7 +144,7 @@ function Footer() {
 
       {/* Main 4-Column Footer Links (Responsive Mobile Grid) */}
       <div
-        className={`mx-auto grid max-w-7xl grid-cols-2 gap-8 px-4 py-9 transition-all delay-150 duration-700 ease-out md:px-10 md:py-10 lg:grid-cols-12 ${
+        className={`mx-auto grid max-w-[1440px] grid-cols-2 gap-8 px-4 py-9 transition-all delay-150 duration-700 ease-out sm:px-6 md:py-10 lg:grid-cols-12 lg:px-8 ${
           inView ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
         }`}
       >
@@ -235,7 +235,7 @@ function Footer() {
 
       {/* Bottom Copyright Bar */}
       <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-4 text-center text-[11px] text-gray-500 md:px-10">
+        <div className="mx-auto max-w-[1440px] px-4 py-4 text-center text-[11px] text-gray-500 sm:px-6 lg:px-8">
           © 2026 Brickline Estates. All rights reserved.
         </div>
       </div>

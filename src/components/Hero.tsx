@@ -11,6 +11,7 @@ const heroSlides = [
     tag: 'Heat resistance',
     image:
       'https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1800&q=80',
+    position: 'object-[center_35%]',
   },
   {
     badge: 'Architectural luxury',
@@ -21,7 +22,8 @@ const heroSlides = [
       'Experience end-to-end architectural planning, sustainable engineering, and curated property management.',
     tag: 'Solar glazed',
     image:
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1800&q=80',
+      'https://www.limaone.com/wp-content/uploads/Lima-Flipping-Insurance-Blog-1200x900.png?auto=format&fit=crop&w=1800&q=80',
+    position: 'object-[center_80%]',
   },
 ]
 
@@ -31,11 +33,11 @@ function Hero() {
   const [typedCaption, setTypedCaption] = useState('')
   const slide = heroSlides[index]
 
-  // Automatic slide every 4 seconds (resets timer after manual arrow click)
+  // Automatic slide every 6.5 seconds (resets timer after manual arrow click)
   useEffect(() => {
     const autoTimer = setInterval(() => {
       setIndex((prev) => (prev + 1) % heroSlides.length)
-    }, 4000)
+    }, 6500)
 
     return () => clearInterval(autoTimer)
   }, [index])
@@ -54,7 +56,7 @@ function Hero() {
       if (subChar >= slide.subtitle.length) {
         clearInterval(subInterval)
       }
-    }, 18)
+    }, 12)
 
     const capInterval = setInterval(() => {
       capChar += 1
@@ -62,7 +64,7 @@ function Hero() {
       if (capChar >= slide.caption.length) {
         clearInterval(capInterval)
       }
-    }, 20)
+    }, 12)
 
     return () => {
       clearInterval(subInterval)
@@ -78,20 +80,18 @@ function Hero() {
   return (
     <section className="relative w-full">
       {/* Main Hero Frame */}
-      <div className="relative min-h-[580px] w-full overflow-hidden bg-gray-900 md:min-h-[660px]">
-        {/* Sliding & Crossfading Background Track */}
+      <div className="relative min-h-[640px] w-full overflow-hidden bg-gray-900 md:min-h-[660px]">
+        {/* Sliding Background Track */}
         <div
           className="absolute inset-0 flex transition-transform duration-700 ease-in-out"
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
-          {heroSlides.map((item, idx) => (
+          {heroSlides.map((item) => (
             <div key={item.title} className="relative h-full w-full shrink-0">
               <img
                 src={item.image}
                 alt={item.badge}
-                className={`h-full w-full object-cover object-center transition-transform duration-[4000ms] ease-out ${
-                  idx === index ? 'scale-105' : 'scale-100'
-                }`}
+                className={`h-full w-full object-cover ${item.position}`}
               />
             </div>
           ))}
@@ -100,9 +100,9 @@ function Hero() {
         {/* Subtle top & bottom gradient overlays */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/65" />
 
-        <div className="relative z-10 mx-auto flex min-h-[580px] max-w-7xl flex-col justify-between px-4 pt-28 pb-10 md:min-h-[660px] md:px-10 md:pt-36">
+        <div className="relative z-10 mx-auto flex min-h-[640px] max-w-[1440px] flex-col justify-between px-4 pt-28 pb-36 sm:px-6 md:min-h-[660px] md:pt-36 md:pb-10 lg:px-8">
           {/* Upper Content Row */}
-          <div className="relative flex flex-col justify-between gap-8 md:flex-row md:items-center">
+          <div className="relative flex flex-col justify-between gap-6 md:flex-row md:items-center md:gap-8">
             <div className="max-w-lg">
               <span className="inline-block cursor-default rounded-full border border-white/30 bg-white/15 px-3.5 py-1 text-[11px] font-medium text-white backdrop-blur-xs transition-all duration-300 hover:border-[#eb5e38] hover:bg-[#eb5e38]/80">
                 {slide.badge}
@@ -132,7 +132,7 @@ function Hero() {
           </div>
 
           {/* Bottom Controls Row */}
-          <div className="mt-12 grid grid-cols-1 items-end gap-6 md:grid-cols-12">
+          <div className="mt-8 grid grid-cols-1 items-end gap-5 md:mt-12 md:grid-cols-12 md:gap-6">
             {/* Left CTA */}
             <div className="md:col-span-3">
               <a
@@ -186,19 +186,27 @@ function Hero() {
       </div>
 
       {/* Overlapping Bottom-Right Consultation Card */}
-      <div className="mx-auto max-w-7xl px-4 md:px-10">
-        <div className="group relative z-20 mx-auto -mt-10 w-full max-w-[290px] rounded-[3px] bg-white shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl md:-mt-28 md:mr-0 md:ml-auto md:max-w-[260px]">
+      <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-8">
+        <div className="group relative z-20 mx-auto -mt-28 w-full max-w-[335px] overflow-hidden rounded-[6px] bg-[#f4f1ea] shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl md:-mt-28 md:mr-0 md:ml-auto md:max-w-[270px]">
           <a
             href="#contact"
             className="flex items-center justify-center gap-2 bg-[#eb5e38] px-4 py-3 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#d9502b] active:scale-95"
           >
-            <span className="transition-transform duration-300 group-hover:rotate-12">
-              📞
-            </span>
+            <svg
+              viewBox="0 0 24 24"
+              className="h-3.5 w-3.5 fill-none stroke-current"
+              strokeWidth="2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+              />
+            </svg>
             <span>Book a Consultation</span>
           </a>
-          <div className="flex items-center gap-3 p-3">
-            <div className="overflow-hidden rounded-xs">
+          <div className="flex items-center gap-4 bg-[#f4f1ea] p-4">
+            <div className="overflow-hidden rounded-[4px]">
               <img
                 src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80"
                 alt="Lead Property Advisor"
@@ -206,16 +214,15 @@ function Hero() {
               />
             </div>
             <div className="text-left">
-              <p className="text-xs font-bold text-gray-900 transition-colors duration-300 group-hover:text-[#eb5e38]">
+              <p className="text-sm font-semibold text-gray-900 transition-colors duration-300 group-hover:text-[#eb5e38]">
                 Daniel Mercer
               </p>
-              <p className="mt-0.5 text-[11px] text-gray-500">
+              <p className="mt-0.5 text-xs text-gray-500">
                 Senior Estates Advisor
               </p>
-              <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold text-[#eb5e38]">
-                <span className="h-1.5 w-1.5 animate-ping rounded-full bg-[#eb5e38]" />
+              <p className="mt-2.5 text-[11px] font-medium text-[#eb5e38]">
                 Available Today
-              </span>
+              </p>
             </div>
           </div>
         </div>

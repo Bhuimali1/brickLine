@@ -38,7 +38,7 @@ function Navbar() {
       ref={navRef}
       className="fixed top-0 left-0 z-50 w-full border-b border-white/15 bg-black/15 backdrop-blur-md transition-all duration-300"
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-10">
+      <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Left Links */}
         <nav className="hidden items-center gap-7 text-[11px] font-medium tracking-wider text-white/90 uppercase lg:flex">
           {/* Projects Dropdown */}
@@ -173,7 +173,7 @@ function Navbar() {
 
       {/* Mobile Dropdown Menu */}
       {mobileOpen && (
-        <div className="border-t border-white/20 bg-black/25 px-5 py-5 text-xs font-medium tracking-wider text-white uppercase backdrop-blur-md lg:hidden">
+        <div className="border-t border-white/20 bg-black/55 px-4 py-5 text-xs font-medium tracking-wider text-white uppercase backdrop-blur-md sm:px-6 lg:hidden">
           <div className="flex flex-col space-y-3.5">
             <div>
               <button
@@ -189,13 +189,13 @@ function Navbar() {
                 <span>{mobileSubmenu === 'projects' ? '▴' : '▾'}</span>
               </button>
               {mobileSubmenu === 'projects' && (
-                <div className="mt-2 ml-3 flex flex-col space-y-2 border-l border-white/30 pl-3 text-[11px] text-black">
+                <div className="mt-2.5 ml-3 flex flex-col space-y-2.5 border-l border-white/35 pl-3 text-[11px] text-white/90">
                   {projectItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="transition hover:text-[#eb5e38]"
+                      className="transition active:text-[#eb5e38] hover:text-[#eb5e38]"
                     >
                       {item.label}
                     </a>
@@ -207,14 +207,14 @@ function Navbar() {
             <a
               href="#highlights"
               onClick={() => setMobileOpen(false)}
-              className="transition hover:text-[#eb5e38]"
+              className="transition active:text-[#eb5e38] hover:text-[#eb5e38]"
             >
               Services
             </a>
             <a
               href="#testimonials"
               onClick={() => setMobileOpen(false)}
-              className="transition hover:text-[#eb5e38]"
+              className="transition active:text-[#eb5e38] hover:text-[#eb5e38]"
             >
               About Us
             </a>
@@ -233,13 +233,13 @@ function Navbar() {
                 <span>{mobileSubmenu === 'properties' ? '▴' : '▾'}</span>
               </button>
               {mobileSubmenu === 'properties' && (
-                <div className="mt-2 ml-3 flex flex-col space-y-2 border-l border-white/30 pl-3 text-[11px] text-black">
+                <div className="mt-2.5 ml-3 flex flex-col space-y-2.5 border-l border-white/35 pl-3 text-[11px] text-white/90">
                   {propertyItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
                       onClick={() => setMobileOpen(false)}
-                      className="transition hover:text-[#eb5e38]"
+                      className="transition active:text-[#eb5e38] hover:text-[#eb5e38]"
                     >
                       {item.label}
                     </a>
@@ -251,7 +251,7 @@ function Navbar() {
             <a
               href="#spotlight"
               onClick={() => setMobileOpen(false)}
-              className="transition hover:text-[#eb5e38]"
+              className="transition active:text-[#eb5e38] hover:text-[#eb5e38]"
             >
               Loan
             </a>

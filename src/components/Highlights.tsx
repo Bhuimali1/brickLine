@@ -80,7 +80,7 @@ function Highlights() {
     <section
       id="highlights"
       ref={sectionRef}
-      className="mx-auto max-w-7xl px-4 pt-2 pb-12 md:px-10 md:pt-4 md:pb-16"
+      className="mx-auto max-w-[1440px] px-4 pt-2 pb-12 sm:px-6 md:pt-4 md:pb-16 lg:px-8"
     >
       {/* Section Header with Scroll Reveal */}
       <div

@@ -1,23 +1,30 @@
 import { useState, useEffect, useRef } from 'react'
+import ex1 from '../assets/ex1.png'
+import ex2 from '../assets/ex2.png'
+import ex3 from '../assets/ex3.png'
+import ex4 from '../assets/ex4.png'
+import ex5 from '../assets/ex5.png'
 
 const rightProjects = [
   {
     name: 'Maison Noire',
     location: 'Oklahoma City, 2024',
-    image:
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+    image: ex2,
   },
   {
     name: 'Villa Bellagio',
     location: 'San Francisco, 2024',
-    image:
-      'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80',
+    image: ex3,
   },
   {
     name: 'The Cedar Atrium',
     location: 'Austin, 2025',
-    image:
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80',
+    image: ex4,
+  },
+  {
+    name: 'Aurelia Residence',
+    location: 'Seattle, 2025',
+    image: ex5,
   },
 ]
 
@@ -29,9 +36,17 @@ function ExecutedProjects() {
   const [inView, setInView] = useState(false)
   const [typedIntro, setTypedIntro] = useState('')
   const [isSliderHovered, setIsSliderHovered] = useState(false)
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false,
+  )
   const sectionRef = useRef<HTMLElement>(null)
 
-  // 1. Scroll-reveal observer (triggers both scrolling down and scrolling back up)
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -47,7 +62,6 @@ function ExecutedProjects() {
     return () => observer.disconnect()
   }, [])
 
-  // 2. Typewriter animation on the selected intro paragraph whenever scrolled into view
   useEffect(() => {
     if (!inView) {
       setTypedIntro('')
@@ -66,7 +80,6 @@ function ExecutedProjects() {
     return () => clearInterval(timer)
   }, [inView])
 
-  // 3. Automatic slide every 3.5 seconds (pauses when hovering over the slide images)
   useEffect(() => {
     if (isSliderHovered) return
 
@@ -86,31 +99,34 @@ function ExecutedProjects() {
     <section
       id="projects"
       ref={sectionRef}
-      className="mx-auto max-w-7xl overflow-hidden px-4 py-14 md:px-10 md:py-20"
+      className="mx-auto max-w-[1440px] overflow-x-clip px-4 py-14 sm:px-6 md:py-20 lg:px-8"
     >
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
-        {/* Left Large Column with Scroll Reveal */}
+      <div className="grid grid-cols-1 items-end gap-10 lg:grid-cols-12 lg:gap-14">
+        {/* Left Large Column */}
         <div
           className={`transition-all duration-700 ease-out lg:col-span-6 ${
             inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
-          <h2 className="text-3xl leading-tight font-medium tracking-tight text-gray-900 sm:text-4xl md:text-[42px]">
-            Executed &amp; in-progress
+          <h2 className="text-3xl leading-[1.08] font-semibold tracking-tight text-gray-900 sm:text-4xl md:text-[48px] lg:text-[54px] xl:text-[60px]">
+            <span className="sm:whitespace-nowrap">Executed &amp; in-progress</span>
             <br />
-            projects <span className="font-light text-gray-400">-</span>
+            projects <span className="font-normal text-gray-400">-</span>
           </h2>
 
-          <div className="group mt-8 cursor-pointer overflow-hidden">
-            <div className="overflow-hidden rounded-[3px] bg-gray-100">
+          <div className="group mt-10 cursor-pointer">
+            {/* Peach Backdrop Card + Clean Cutout House (ex1) Popping Out Top Only */}
+            <div className="relative aspect-[4/3] w-full [clip-path:inset(-25%_0_0_0)]">
+              <div className="absolute inset-x-0 top-[26%] bottom-0 rounded-[3px] bg-[#f6e3db] transition-colors duration-300 group-hover:bg-[#f2d6ca]" />
+
               <img
-                src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1000&q=80"
+                src={ex1}
                 alt="Golden Horizon Villa"
-                className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                className="relative z-10 h-full w-full origin-bottom object-contain object-bottom transition-transform duration-700 ease-out group-hover:scale-105"
               />
             </div>
 
-            <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-gray-100 pb-3 transition-colors duration-300 group-hover:border-[#eb5e38]/40">
+            <div className="mt-4 flex items-baseline justify-between gap-4 border-b border-gray-200/70 pb-3 transition-colors duration-300 group-hover:border-[#eb5e38]/40">
               <h3 className="text-base font-semibold text-gray-900 transition-colors duration-300 group-hover:text-[#eb5e38] sm:text-lg">
                 Golden Horizon Villa
               </h3>
@@ -126,23 +142,23 @@ function ExecutedProjects() {
           </div>
         </div>
 
-        {/* Right Offset Column with Scroll Reveal */}
+        {/* Right Offset Column */}
         <div
-          className={`flex flex-col justify-between transition-all delay-150 duration-700 ease-out lg:col-span-6 lg:pt-12 ${
+          className={`flex flex-col justify-between transition-all delay-150 duration-700 ease-out lg:col-span-6 ${
             inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}
         >
           <div>
             {/* Typewriter Intro Paragraph */}
-            <p className="min-h-[3.75rem] max-w-md text-xs leading-relaxed text-gray-600 sm:text-sm">
+            <p className="min-h-[3.5rem] max-w-md text-xs leading-relaxed text-gray-600 sm:text-sm">
               {typedIntro}
               {inView && typedIntro.length < introParagraph.length && (
                 <span className="ml-0.5 inline-block h-3.5 w-[1.5px] animate-pulse bg-[#eb5e38] align-middle" />
               )}
             </p>
 
-            {/* Slider Controls + Animated Underlined Link */}
-            <div className="mt-6 flex items-center justify-between gap-4">
+            {/* Full-Width Slider Controls */}
+            <div className="mt-6 flex items-center gap-4">
               <button
                 type="button"
                 onClick={handlePrev}
@@ -152,12 +168,14 @@ function ExecutedProjects() {
                 ←
               </button>
 
-              <a
-                href="#recent"
-                className="relative py-1 text-center text-xs font-medium text-gray-800 transition-colors duration-300 after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:w-full after:bg-gray-300 after:transition-colors after:duration-300 hover:text-[#eb5e38] hover:after:bg-[#eb5e38]"
-              >
-                Explore more project that we have done
-              </a>
+              <div className="h-[2px] flex-1 bg-gray-200">
+                <div
+                  className="h-full bg-gray-700 transition-all duration-500"
+                  style={{
+                    width: `${((startIdx + 1) / rightProjects.length) * 100}%`,
+                  }}
+                />
+              </div>
 
               <button
                 type="button"
@@ -168,32 +186,48 @@ function ExecutedProjects() {
                 →
               </button>
             </div>
+
+            {/* Centered Underlined Link Below Progress Bar */}
+            <div className="mt-3 text-center">
+              <a
+                href="#recent"
+                className="inline-block text-xs text-gray-700 transition-colors duration-300 hover:text-[#eb5e38]"
+              >
+                <span className="font-medium text-gray-900 underline decoration-gray-400 underline-offset-4">
+                  Explore more project
+                </span>{' '}
+                <span>that we have done</span>
+              </a>
+            </div>
           </div>
 
-          {/* Two Auto-Sliding Vertical Cards (Pauses on Hover) */}
+          {/* 4 Auto-Sliding 3D Cutout Cards: 1-by-1 on Mobile, 2 Side-by-Side on Desktop */}
           <div
             onMouseEnter={() => setIsSliderHovered(true)}
             onMouseLeave={() => setIsSliderHovered(false)}
-            className="mt-8 overflow-hidden"
+            className="mt-8 overflow-x-clip pt-6"
           >
             <div
-              className="-mx-2.5 flex transition-transform duration-700 ease-in-out"
+              className="flex transition-transform duration-700 ease-in-out sm:-mx-3.5"
               style={{
-                transform: `translateX(-${startIdx * 50}%)`,
+                transform: `translateX(-${startIdx * (isMobile ? 100 : 50)}%)`,
               }}
             >
               {[...rightProjects, rightProjects[0]].map((item, idx) => (
                 <div
                   key={`${item.name}-${idx}`}
-                  className="group w-full shrink-0 cursor-pointer px-2.5 transition-transform duration-300 hover:-translate-y-1 sm:w-1/2"
+                  className="group w-full shrink-0 cursor-pointer transition-transform duration-300 hover:-translate-y-1 sm:w-1/2 sm:px-3.5"
                 >
-                  <div className="overflow-hidden rounded-[3px] bg-gray-100">
+                  {/* 72% Peach Backdrop Card + Zoomed House Clipped Cleanly on Left/Right/Bottom */}
+                  <div className="relative aspect-[4/3] w-full [clip-path:inset(-25%_0_0_0)] sm:aspect-[11/10]">
+                    <div className="absolute inset-x-0 top-[28%] bottom-0 rounded-[3px] bg-[#f6e3db] transition-colors duration-300 group-hover:bg-[#f2d6ca]" />
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="aspect-[3/4] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      className="relative z-10 h-full w-full origin-bottom scale-[1.18] object-contain object-bottom transition-transform duration-700 ease-out group-hover:scale-[1.24] sm:scale-[1.24] sm:group-hover:scale-[1.30]"
                     />
                   </div>
+
                   <div className="mt-3 flex items-center justify-between">
                     <h4 className="text-sm font-semibold text-gray-900 transition-colors duration-300 group-hover:text-[#eb5e38]">
                       {item.name}
